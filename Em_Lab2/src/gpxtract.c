@@ -41,8 +41,50 @@ void flagSelector(char* input) {
 		flagGpxOpen = 1;
 		break;
 	case "<trk":
-			flagTrkOpen = 1;
-			break;
+		flagTrkOpen = 1;
+		break;
+	case "<name":
+		flagNameOpen = 1;
+		break;
+	case "<trkseg":
+		flagTrksegOpen = 1;
+		break;
+	case "<trkpt":
+		flagTrkptOpen = 1;
+		break;
+	case "lon=":
+		flagLonOpen = 1;
+		break;
+	case "lat=":
+		flagLatOpen = 1;
+		break;
+	case "<ele":
+		flagEleOpen = 1;
+		break;
+	case "<time":
+		flagTimeOpen = 1;
+		break;
+	case "</gpx":
+		flagGpxOpen = 0;
+		break;
+	case "</trk":
+		flagTrkOpen = 0;
+		break;
+	case "</name":
+		flagNameOpen = 0;
+		break;
+	case "</trkseg":
+		flagTrksegOpen = 0;
+		break;
+	case "</trkpt":
+		flagTrkptOpen = 0;
+		break;
+	case "</ele":
+		flagEleOpen = 0;
+		break;
+	case "</time":
+		flagTimeOpen = 0;
+		break;
 	}
 }
 
@@ -55,6 +97,31 @@ void analisador(char input) {
 	}
 	buffer[pointer] = input;
 	buffer[pointer + 1] = '\0';
+	flagSelector(buffer);
+
+	if (flagGpxOpen) {
+		if (flagTrkOpen) {
+			if (flagNameOpen) {
+				//pular primeiro caracter, pegar dados até achar o '<';
+			}
+			if (flagTrksegOpen) {
+				if (flagTrkptOpen) {
+					if (flagLonOpen) {
+						//ignorar primiero caracter, pegar dados até chegar no "'", flagLonOpen = 0
+					}
+					if (flagLatOpen) {
+						//ignorar primiero caracter, pegar dados até chegar no "'", flagLatOpen = 0
+					}
+					if (flagEleOpen) {
+						//pular primeiro caracter, pegar dados até achar o '<';
+					}
+					if (flagTimeOpen) {
+						//pular primeiro caracter, pegar dados até achar o '<';
+					}
+				}
+			}
+		}
+	}
 }
 
 void extract(char input) {
