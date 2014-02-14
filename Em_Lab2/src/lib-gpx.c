@@ -98,7 +98,13 @@ void gpxDecoder(char string[]){
     tim[len] = '\0';
     printf("%s\n", tim);
 
-    //struct trkpt_head tkpth = {NULL, NULL, }
+    struct trkpt_head trkpth = {0, 0, strtodbl(lon), strtodbl(lat), strtodbl(ele), strtodbl(tim)};
+
+    struct trkseg trksg = {&trkpth};
+
+    struct trk_head trkh = {0, 0, &trksg, name};
+
+    struct gpx gpxx = {&trkh};
 
 }
 

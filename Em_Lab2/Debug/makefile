@@ -29,7 +29,7 @@ all: Em_Lab2.axf
 Em_Lab2.axf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU Linker'
-	arm-none-eabi-gcc -nostdlib -Xlinker --gc-sections -Xlinker -Map=Em_Lab2.map -mcpu=cortex-m3 -mthumb -T "oled_periph_Debug.ld" -o "Em_Lab2.axf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -nostdlib -Xlinker --gc-sections -Xlinker -Map=Em_Lab2.map -mcpu=cortex-m3 -mthumb -T "Em_Lab2_Debug.ld" -o "Em_Lab2.axf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build

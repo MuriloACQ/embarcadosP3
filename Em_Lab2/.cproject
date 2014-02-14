@@ -78,7 +78,7 @@
 							<tool id="com.crt.advproject.link.exe.debug.1668374556" name="MCU Linker" superClass="com.crt.advproject.link.exe.debug">
 								<option id="com.crt.advproject.link.arch.737726033" name="Architecture" superClass="com.crt.advproject.link.arch" value="com.crt.advproject.link.target.cm3" valueType="enumerated"/>
 								<option id="com.crt.advproject.link.thumb.979921036" name="Thumb mode" superClass="com.crt.advproject.link.thumb" value="true" valueType="boolean"/>
-								<option id="com.crt.advproject.link.script.955609216" name="Linker script" superClass="com.crt.advproject.link.script" value="&quot;oled_periph_Debug.ld&quot;" valueType="string"/>
+								<option id="com.crt.advproject.link.script.955609216" name="Linker script" superClass="com.crt.advproject.link.script" value="&quot;Em_Lab2_Debug.ld&quot;" valueType="string"/>
 								<option id="com.crt.advproject.link.manage.1169623035" name="Manage linker script" superClass="com.crt.advproject.link.manage" value="true" valueType="boolean"/>
 								<option id="gnu.c.link.option.nostdlibs.1488909067" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" value="true" valueType="boolean"/>
 								<option id="gnu.c.link.option.other.1392495122" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" valueType="stringList">
@@ -196,7 +196,7 @@
 							<tool id="com.crt.advproject.link.exe.release.930974575" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
 								<option id="com.crt.advproject.link.arch.735923581" name="Architecture" superClass="com.crt.advproject.link.arch" value="com.crt.advproject.link.target.cm3" valueType="enumerated"/>
 								<option id="com.crt.advproject.link.thumb.1279774782" name="Thumb mode" superClass="com.crt.advproject.link.thumb" value="true" valueType="boolean"/>
-								<option id="com.crt.advproject.link.script.33239773" name="Linker script" superClass="com.crt.advproject.link.script" value="&quot;oled_periph_Release.ld&quot;" valueType="string"/>
+								<option id="com.crt.advproject.link.script.33239773" name="Linker script" superClass="com.crt.advproject.link.script" value="&quot;Em_Lab2_Release.ld&quot;" valueType="string"/>
 								<option id="com.crt.advproject.link.manage.206989712" name="Manage linker script" superClass="com.crt.advproject.link.manage" value="true" valueType="boolean"/>
 								<option id="gnu.c.link.option.nostdlibs.348076669" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" value="true" valueType="boolean"/>
 								<option id="gnu.c.link.option.other.1985624537" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" valueType="stringList">

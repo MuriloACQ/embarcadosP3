@@ -6,17 +6,23 @@
 C_SRCS += \
 ../src/cr_startup_lpc13.c \
 ../src/driveUART.c \
-../src/main.c 
+../src/lib-gpx.c \
+../src/main.c \
+../src/srttodouble.c 
 
 OBJS += \
 ./src/cr_startup_lpc13.o \
 ./src/driveUART.o \
-./src/main.o 
+./src/lib-gpx.o \
+./src/main.o \
+./src/srttodouble.o 
 
 C_DEPS += \
 ./src/cr_startup_lpc13.d \
 ./src/driveUART.d \
-./src/main.d 
+./src/lib-gpx.d \
+./src/main.d \
+./src/srttodouble.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
