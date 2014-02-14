@@ -1,5 +1,8 @@
 #include <regex.h>
 
+/**
+ * Estruturas de mapeamento do arquivo gpx
+ */
 struct trkpt_head{
     struct trkpt *next, *prev;
     double lon, lat, ele, tim;
@@ -19,21 +22,84 @@ struct gpx {
    struct trk_head *trks;
 };
 
+/**
+ * Essa função precisa de um e somente um grupo na expressão regular!
+ * retorna a struct regmatch_t com os limites da substring encontrada
+ */
 regmatch_t rxmatch(char *s,char *pat){
     regex_t rx;
-    regmatch_t res;
+    regmatch_t res[2];
     regcomp(&rx,pat,REG_EXTENDED);
-    regexec(&rx,s,1,&res,0);
+    regexec(&rx,s,2,res,0);
     regfree(&rx);
-    return res;
+    return res[1];
 }
 
 void gpxDecoder(char string[]){
-    char res[340];
-    regmatch_t result = rxmatch(string, "<trkpt.*?>");
+    char res[1000];
+    regmatch_t result = rxmatch(string, "<gpx>(.*?)</gpx>");
     int len = result.rm_eo - result.rm_so;
     memcpy(res, string + result.rm_so, len);
-    printf("'%s'\n", res);
+    res[len] = '\0';
+    printf("%s\n", res);
+
+    result = rxmatch(res, "<trk>(.*)</trk>");
+    len = result.rm_eo - result.rm_so;
+    memcpy(res, res + result.rm_so, len);
+    res[len] = '\0';
+    printf("%s\n", res);
+
+    char name[10];
+    result = rxmatch(res, "<name>(.*)</name>");
+    len = result.rm_eo - result.rm_so;
+    memcpy(name, res + result.rm_so, len);
+    name[len] = '\0';
+    printf("%s\n", name);
+
+    char trkseg[1000];
+    result = rxmatch(res, "<trkseg>(.*)</trkseg>");
+    len = result.rm_eo - result.rm_so;
+    memcpy(trkseg, res + result.rm_so, len);
+    trkseg[len] = '\0';
+    printf("%s\n", trkseg);
+
+    char trkpt[1000];
+    result = rxmatch(res, "<trkpt (.*)</trkpt><trkpt");
+    len = result.rm_eo - result.rm_so;
+    memcpy(trkpt, res + result.rm_so, len);
+    trkpt[len] = '\0';
+    printf("%s\n", trkpt);
+
+    char lon[30];
+    result = rxmatch(res, "lon=.(-?+?[0-9]+.\?[0-9]*).");
+    len = result.rm_eo - result.rm_so;
+    memcpy(lon, res + result.rm_so, len);
+    lon[len] = '\0';
+    printf("%s\n", lon);
+
+    char lat[30];
+    result = rxmatch(trkpt, "lat=.(-?+?[0-9]+.\?[0-9]*).");
+    len = result.rm_eo - result.rm_so;
+    memcpy(lat, trkpt + result.rm_so, len);
+    lat[len] = '\0';
+    printf("%s\n", lat);
+
+    char ele[30];
+    result = rxmatch(trkpt, "<ele>(.*)</ele>");
+    len = result.rm_eo - result.rm_so;
+    memcpy(ele, trkpt + result.rm_so, len);
+    ele[len] = '\0';
+    printf("%s\n", ele);
+
+    char tim[30];
+    result = rxmatch(trkpt, "<time>(.*)</time>");
+    len = result.rm_eo - result.rm_so;
+    memcpy(tim, trkpt + result.rm_so, len);
+    tim[len] = '\0';
+    printf("%s\n", tim);
+
+    //struct trkpt_head tkpth = {NULL, NULL, }
+
 }
 
 
